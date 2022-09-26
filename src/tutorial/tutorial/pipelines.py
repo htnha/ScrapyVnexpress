@@ -13,7 +13,7 @@ from itemadapter import ItemAdapter
 class SqlitePipeline:
     def __init__(self):
         ## Create/Connect to database
-        self.con = sqlite3.connect('vnexpress.db')
+        self.con = sqlite3.connect('baodautu.db')
 
         ## Create cursor, used to execute commands
         self.cur = self.con.cursor()
@@ -24,20 +24,24 @@ class SqlitePipeline:
             title TEXT,
             date_vn TEXT,
             content TEXT,
-            url TEXT
+            url TEXT,
+            category TEXT,
+            image TEXT
         )
         """)
 
     def process_item(self, item, spider):
         ## Define insert statement
         self.cur.execute("""
-                    INSERT INTO bai_bao (title, date_vn, content, url) VALUES (?, ?, ?, ?)
+                    INSERT INTO bai_bao (title, date_vn, content, url, category, image) VALUES (?, ?, ?, ?, ?, ?)
                 """,
                          (
                              item['title'],
                              str(item['date']),
                              item['content'],
                              item['url'],
+                             item['category'],
+                             item['image'],
                          ))
 
         ## Execute insert of data into database

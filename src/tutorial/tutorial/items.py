@@ -13,4 +13,6 @@ class BaiBaoItem(scrapy.Item):
     date = scrapy.Field()
     content = scrapy.Field()
     url = scrapy.Field()
+    category = scrapy.Field()
+    image = scrapy.Field()
     pass
